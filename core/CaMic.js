@@ -92,7 +92,11 @@ class CaMic {
         }
 
         this.viewer.viewport.panTo(pt, true);
-
+        this.viewer.viewport.setRotation(states.a);
+        const sup = this.viewer.rotateBar.txtR.childNodes[1];
+        this.viewer.rotateBar.txtR.innerHTML = String(states.a);
+        this.viewer.rotateBar.txtR.appendChild(sup);
+        this.viewer.rotateBar.range.value = String(states.a);
         // set a position mark
         if (states.hasMark) {
           // create a mark
@@ -126,7 +130,7 @@ class CaMic {
     // create draw pulgin
     this.createCanvasDraw();
     this.createOverlayers();
-
+    this.createRotationBar();
 
     // change navigator style
     if (this.setting.showNavigator) {
@@ -234,6 +238,9 @@ class CaMic {
       position: 'BOTTOM_RIGHT',
       autoFade: false,
     });
+  }
+  createRotationBar() {
+    this.viewer.rotationBar({});
   }
   /**
    * set up a canvas Draw functionality on the image
